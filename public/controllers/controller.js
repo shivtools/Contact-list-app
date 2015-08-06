@@ -37,6 +37,27 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     	});
     };
 
+    $scope.edit = function(id){
+    	console.log(id);
+    	$http.get('/contactlist/' + id).success(function(response){
+    		$scope.contact = response;
+    	});
+    };
+
+    $scope.update = function(){
+    	console.log($scope.contact._id);
+    	//we want to send url with id of contact to server
+    	//we also want to send the updated data fields of contact to server
+    	$http.put('/contactlist/' + $scope.contact._id, $scope.contact).success(function(response){
+    		refresh();
+    	});
+
+    };
+
+    $scope.deselect = function(){
+    	$scope.contact = "";
+    }
+
 
 
     //make new function called refresh, that makes fresh request for all data
