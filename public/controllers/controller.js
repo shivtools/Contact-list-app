@@ -29,6 +29,16 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
     	//complete and response is received.
     };
 
+    $scope.remove = function(id){
+    	//send http delete request with id to server 
+    	console.log(id);
+    	$http.delete('/contactlist/' + id).success(function(response){
+    		refresh();
+    	});
+    };
+
+
+
     //make new function called refresh, that makes fresh request for all data
     //in mongodb database.
 
@@ -38,4 +48,6 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
    
     // http get from controller side sends request to server and the app
     //app.get from server side responds with data we want
+
+
 }]);
